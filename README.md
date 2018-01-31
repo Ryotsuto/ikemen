@@ -18,15 +18,15 @@ Output: 21
 处理溢出的情况是重点，查了一下，可以long long来避免溢出。
 自己做的时候用了除以10取余的方法，后来看到有的答案将数字转化为字符串再倒序输出，很方便的样子，之后会再试试。
 以及找到了这样的代码：
-int reverse(int x) {
-    int t=0;
-    while(x!=0)
-    {
-        if(t>INT_MAX/10||t<(INT_MIN)/10)
-            return 0;
-        t=t*10+x%10;
-        x/=10;
-    }
+    int reverse(int x) {
+        int t=0;
+        while(x!=0)
+        {
+            if(t>INT_MAX/10||t<(INT_MIN)/10)
+                return 0;  
+            t=t*10+x%10;
+            x/=10;
+        }
     return t;
 }
 
