@@ -1,0 +1,37 @@
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target) {
+    int i,j;
+    static int a[2];
+    for(i=0;i<numsSize-1;i++)
+        for(j=i+1;j<numsSize;j++)
+        {
+            if(nums[i]+nums[j]==target)
+            {
+                a[0]=i;
+                a[1]=j;
+            }
+        }
+    return a;
+}
+
+定义a[2]数组，返回数组指针即可。提示中强调了返回的地址应为静态的，不能由函数分配，所以来一发static解决这个问题。
+直接返回nums数组的下标也是可以的。
+注意了一下notes中的malloc，百度百科：
+malloc的全称是memory allocation，中文叫动态内存分配，用于申请一块连续的指定大小的内存块区域以void*类型返回分配的内存区域地址。
+当无法知道内存具体位置的时候，想要绑定真正的内存空间，就需要用到动态的分配内存。
+void* 类型表示未确定类型的指针。C,C++规定，void* 类型可以通过类型转换强制转换为任何其它类型的指针。
+一般需和free函数配对使用。内存不再使用时，free函数可以将之前申请的动态内存释放。
+猜测和new、delete函数比较类似，继续查了一下，发现malloc和new主要有以下两个区别：
+  （1）new 返回指定类型的指针，并且可以自动计算所需要大小。而 malloc 则必须要由我们计算字节数，并且在返回后强行转换为实际类型的指针。
+  （2） malloc 只管分配内存，并不能对所得的内存进行初始化，所以得到的一片新内存中，其值将是随机的。new创建的对象可以用初始化变量的方式初始化。
+ 
