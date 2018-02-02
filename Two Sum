@@ -9,7 +9,7 @@ return [0, 1].
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-``` c++
+
 int* twoSum(int* nums, int numsSize, int target) {
     int i,j;
     static int a[2];
@@ -24,7 +24,6 @@ int* twoSum(int* nums, int numsSize, int target) {
         }
     return a;
 }
-```
 
 定义a[2]数组，返回数组指针即可。提示中强调了返回的地址应为静态的，不能由函数分配，所以来一发static解决这个问题。
 直接返回nums数组的下标也是可以的。
